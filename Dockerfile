@@ -1,5 +1,5 @@
 FROM phusion/baseimage:0.11
-MAINTAINER The onest decentralized organisation
+MAINTAINER The localcent decentralized organisation
 
 ENV LANG=en_US.UTF-8
 RUN \
@@ -32,8 +32,8 @@ RUN \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD . /onest-core
-WORKDIR /onest-core
+ADD . /localcent-core
+WORKDIR /localcent-core
 
 # Compile
 RUN \
@@ -53,19 +53,19 @@ RUN \
     install -s programs/witness_node/witness_node programs/genesis_util/get_dev_key programs/cli_wallet/cli_wallet /usr/local/bin && \
     #
     # Obtain version
-    mkdir /etc/onest && \
-    git rev-parse --short HEAD > /etc/onest/version && \
+    mkdir /etc/localcent && \
+    git rev-parse --short HEAD > /etc/localcent/version && \
     cd / && \
-    rm -rf /onest-core
+    rm -rf /localcent-core
 
 # Home directory $HOME
 WORKDIR /
-RUN useradd -s /bin/bash -m -d /var/lib/onest onest
-ENV HOME /var/lib/onest
-RUN chown onest:onest -R /var/lib/onest
+RUN useradd -s /bin/bash -m -d /var/lib/localcent localcent
+ENV HOME /var/lib/localcent
+RUN chown localcent:localcent -R /var/lib/localcent
 
 # Volume
-VOLUME ["/var/lib/onest", "/etc/onest"]
+VOLUME ["/var/lib/localcent", "/etc/localcent"]
 
 # rpc service:
 EXPOSE 8090
@@ -73,12 +73,12 @@ EXPOSE 8090
 EXPOSE 1776
 
 # default exec/config files
-ADD docker/default_config.ini /etc/onest/config.ini
-ADD docker/onestentry.sh /usr/local/bin/onestentry.sh
-RUN chmod a+x /usr/local/bin/onestentry.sh
+ADD docker/default_config.ini /etc/localcent/config.ini
+ADD docker/localcententry.sh /usr/local/bin/localcententry.sh
+RUN chmod a+x /usr/local/bin/localcententry.sh
 
 # Make Docker send SIGINT instead of SIGTERM to the daemon
 STOPSIGNAL SIGINT
 
 # default execute entry
-CMD ["/usr/local/bin/onestentry.sh"]
+CMD ["/usr/local/bin/localcententry.sh"]

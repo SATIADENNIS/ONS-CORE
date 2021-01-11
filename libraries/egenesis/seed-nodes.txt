@@ -1,2 +1,9 @@
 // seed nodes
-"seed01.ons.network:1776",          // ioBanker     (GERMANY)
+//"seed01.ons.network:1776",  
+
+ //....."INPUT localcent SERVER IP ADDRESS AND PORT NUMBER"
+
+//"45.32.27.41:20001",
+//"47.105.178.64:20001",
+//"47.252.24.193:20001",
+//"144.202.1.184:20001",

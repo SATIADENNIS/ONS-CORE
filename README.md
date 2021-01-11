@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/Onest-io/ONS-CORE.svg?branch=master)](https://travis-ci.org/Onest-io/ONS-CORE)
+[![Build Status](https://travis-ci.org/LocalCent-io/USD-CORE.svg?branch=master)](https://travis-ci.org/LocalCent-io/USD-CORE)
 
-Onest Blockchain Core Node
+LocalCent Blockchain Core Node
 ==============
 
 * [Getting Started](#getting-started)
@@ -10,10 +10,10 @@ Onest Blockchain Core Node
 * [FAQ](#faq)
 * [License](#license)
 
-Getting started with installing onest blockchain core node:
+Getting started with installing LocalCent blockchain core node:
 ---------------
 Build instructions and additional documentation are available in the
-[wiki](https://github.com/Onest-io/ONS-CORE/wiki).
+[wiki](https://github.com/LocalCent-io/USD-CORE/wiki).
 
 | Default | High-End | Minimal  | Elastic-Search 
 | --- | --- | --- | ---
@@ -23,20 +23,20 @@ Build instructions and additional documentation are available in the
 
 **NOTE:** Versions of [Boost](http://www.boost.org/) 1.58 through 1.69 are supported. Newer versions may work, but
 have not been tested. If your system came pre-installed with a version of Boost that you do not wish to use, you may
-manually build your preferred version and use it with Onest by specifying it on the CMake command line.
+manually build your preferred version and use it with LocalCent by specifying it on the CMake command line.
 
 Example: 
 
     cmake -DBOOST_ROOT=/path/to/boost .
 
 
-**NOTE:** Onest requires a 64-bit operating system to build, and will not build on a 32-bit OS.
+**NOTE:** LocalCent requires a 64-bit operating system to build, and will not build on a 32-bit OS.
 
-**NOTE:** Onest now supports Ubuntu 18.04 LTS.
+**NOTE:** LocalCent now supports Ubuntu 18.04 LTS.
 
-**NOTE:** Onest recommend building on Ubuntu 16.04 LTS (64-bit).
+**NOTE:** LocalCent recommend building on Ubuntu 16.04 LTS (64-bit).
 
-**NOTE:** Onest now supports OpenSSL 1.1.0 OS package.
+**NOTE:** LocalCent now supports OpenSSL 1.1.0 OS package.
 
 **NOTE:** Make sure your default gcc and g++ compilers are version 7 ``gcc -v`` & ``g++ -v``, in case it's not version 7, change your default gcc and g++ versions using the following procedure:
 
@@ -55,22 +55,22 @@ Example:
     sudo apt-get install autoconf cmake make automake libtool git libboost-all-dev libssl-dev gcc-7 g++-7 libcurl4-openssl-dev doxygen graphviz
 
 
-**2) Compiling and Building with Official Onest Blockchain Source Code:**
+**2) Compiling and Building with Official LocalCent Blockchain Source Code:**
 
 
-    git clone https://github.com/Onest-io/ONS-CORE.git
-    cd ONS-CORE
+    git clone https://github.com/LocalCent-io/USD-CORE.git
+    cd USD-CORE
     git checkout master # may substitute "master" with current release tag
     git submodule update --init --recursive --remote
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .
     make
 
 
-**3) Running Onest Blockchain Node:** 
+**3) Running LocalCent Blockchain Node:** 
 
-Note: you have to run`witness_node` to start the node, it can be launched with the below command while, making sure to `cd ~/ONS-CORE` before launching this below command, if you want to keep the node running in background you might need to run it after entering `screen` session then run it, to exit the screen session and keep the node running, hold on the `ctrl` key and then press once `A` then `D` once again while holding `ctrl` key on your keyboard, to get back to session use the command `screen -r`.
+Note: you have to run`witness_node` to start the node, it can be launched with the below command while, making sure to `cd ~/USD-CORE` before launching this below command, if you want to keep the node running in background you might need to run it after entering `screen` session then run it, to exit the screen session and keep the node running, hold on the `ctrl` key and then press once `A` then `D` once again while holding `ctrl` key on your keyboard, to get back to session use the command `screen -r`.
 
-Use the following command to run Onest Blockchain node:
+Use the following command to run LocalCent Blockchain node:
 
 
     ./programs/witness_node/witness_node
@@ -84,7 +84,7 @@ the blockchain. After syncing, you can exit the node using Ctrl+C and setup the 
     rpc-endpoint = 127.0.0.1:8090
 
 
-**IMPORTANT:** By default the witness node will start in reduced memory mode by using some of the commands detailed in [Memory reduction for nodes](https://github.com/ONS-CORE/wiki/Memory-reduction-for-nodes).
+**IMPORTANT:** By default the witness node will start in reduced memory mode by using some of the commands detailed in [Memory reduction for nodes](https://github.com/USD-CORE/wiki/Memory-reduction-for-nodes).
 In order to run a full node with all the account history you need to remove `partial-operations` and `max-ops-per-account` from your config file. Please note that currently(2018-10-17) a full node will need more than 160GB of RAM to operate and required memory is growing fast. Consider the following table as minimal requirements before running a node:
 
 After starting the witness node again, in a separate terminal you can run:
@@ -118,15 +118,15 @@ To import your initial balance:
 If you send private keys over this connection, `rpc-endpoint` should be bound to localhost for security.
 
 Use `help` to see all available wallet commands. Source definition and listing of all commands is available
-[here](https://github.com/Onest-io/ONS-CORE/blob/master/libraries/wallet/include/graphene/wallet/wallet.hpp).
+[here](https://github.com/LocalCent-io/USD-CORE/blob/master/libraries/wallet/include/graphene/wallet/wallet.hpp).
 
 
-Upgrade an existing onest blockchain core node:
+Upgrade an existing LocalCent blockchain core node:
 ---------------
-In case you don't want to resync the entire blockchain again by performing the new installation procedure mentioned above, you can upgrade the node using the following commands while, making sure to `cd ~/ONS-CORE` directory before launching these commands, make sure to kill the existing node `witness_node` process before you start the upgrade and remember to start `witness_node` once you are done:
+In case you don't want to resync the entire blockchain again by performing the new installation procedure mentioned above, you can upgrade the node using the following commands while, making sure to `cd ~/USD-CORE` directory before launching these commands, make sure to kill the existing node `witness_node` process before you start the upgrade and remember to start `witness_node` once you are done:
 
 
-    git remote set-url origin https://github.com/Onest-io/ONS-CORE.git
+    git remote set-url origin https://github.com/LocalCent-io/USD-CORE.git
     git checkout master
     git remote set-head origin --auto
     git pull
@@ -138,9 +138,9 @@ In case you don't want to resync the entire blockchain again by performing the n
 Support
 -------
 
-Onest Core bugs can be reported directly to the [issue tracker](https://github.com/Onest-io/ONS-CORE/issues).
+LocalCent Core bugs can be reported directly to the [issue tracker](https://github.com/LocalCent-io/USD-CORE/issues).
 
-Onest UI bugs should be reported to the [UI issue tracker](https://github.com/Onest-io/ONS-CORE/issues)
+LocalCent UI bugs should be reported to the [UI issue tracker](https://github.com/LocalCent-io/USD-CORE/issues)
 
 
 Using the API
@@ -260,7 +260,7 @@ FAQ
 
     The second number specifies the *type*.  The type of the object determines what fields it has.  For a
     complete list of type ID's, see `enum object_type` and `enum impl_object_type` in
-    [types.hpp](https://github.com/Onest-io/ONS-CORE/blob/onest/libraries/chain/include/graphene/chain/protocol/types.hpp).
+    [types.hpp](https://github.com/LocalCent-io/USD-CORE/blob/LocalCent/libraries/chain/include/graphene/chain/protocol/types.hpp).
 
     The third number specifies the *instance*.  The instance of the object is different for each individual
     object.
@@ -293,5 +293,5 @@ FAQ
  
 License
 -------
-Onest Core Code is under the MIT license. See [LICENSE](https://github.com/Onest-io/ONS-CORE/blob/master/LICENSE.txt)
+LocalCent Core Code is under the MIT license. See [LICENSE](https://github.com/LocalCent-io/USD-CORE/blob/master/LICENSE.txt)
 for more information.

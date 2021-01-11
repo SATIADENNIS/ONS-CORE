@@ -40,8 +40,8 @@ if [ ! -d "tmp/boost_1_57_0" ]; then
 fi 
   
 if [ ! -d "graphene" ]; then
-  echo_msg "building onest graphene toolkit.."  
-  git clone https://github.com/Onest-io/graphene.git
+  echo_msg "building LocalCent graphene toolkit.."  
+  git clone https://github.com/LocalCent-io/graphene.git
   cd graphene
   git submodule update --init --recursive
   cmake .
@@ -51,7 +51,7 @@ fi
 
 if [ ! -d "graphene-ui" ]; then
   echo_msg "installing ui dependencies.."  
-  git clone https://github.com/Onest-io/graphene-ui.git
+  git clone https://github.com/LocalCent-io/graphene-ui.git
   cd graphene-ui/dl
   npm install --silent
   cd ../web
@@ -73,7 +73,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision 'shell', inline: $script, privileged: false
   config.ssh.username = 'vagrant'
 
-  # to use with Digital Ocean please install this plugin https://github.com/Onest-io/digital_ocean_box
+  # to use with Digital Ocean please install this plugin https://github.com/LocalCent-io/digital_ocean_box
   # note: due to bug in vagrant-digitalocean you need to run provision separetly:
   # vagrant up --provider digital_ocean --no-provision
   # vagrant provision
@@ -81,7 +81,7 @@ Vagrant.configure(2) do |config|
     override.vm.hostname = 'graphene'
     override.ssh.private_key_path = ENV['VAGRANT_KEY_PATH']
     override.vm.box = 'digital_ocean'
-    override.vm.box_url = 'https://github.com/Onest-io/digital_ocean_box/blob/master/digital_ocean.box'
+    override.vm.box_url = 'https://github.com/LocalCent-io/digital_ocean_box/blob/master/digital_ocean.box'
     provider.setup = true
     provider.region = 'nyc2'
     provider.image = 'ubuntu-14-04-x64'
@@ -97,8 +97,8 @@ Vagrant.configure(2) do |config|
     aws.region = "us-east-1"
     aws.ami = 'ami-018c9568'
     aws.instance_type = 'm1.small'
-    aws.security_groups = [ 'onestxt' ]
-    override.vm.hostname = 'onestsxt-aws'
+    aws.security_groups = [ 'LocalCentxt' ]
+    override.vm.hostname = 'LocalCentsxt-aws'
     override.ssh.username = 'ubuntu'
     override.ssh.private_key_path = ENV['VAGRANT_KEY_PATH']
     override.vm.box = 'dummy'

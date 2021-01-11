@@ -9,13 +9,13 @@ The `Dockerfile` performs the following steps:
 
 1. Obtain base image (phusion/baseimage:0.10.1)
 2. Install required dependencies using `apt-get`
-3. Add bitshares-core source code into container
+3. Add localcent-core source code into container
 4. Update git submodules
 5. Perform `cmake` with build type `Release`
 6. Run `make` and `make_install` (this will install binaries into `/usr/local/bin`
 7. Purge source code off the container
-8. Add a local bitshares user and set `$HOME` to `/var/lib/bitshares`
-9. Make `/var/lib/bitshares` and `/etc/bitshares` a docker *volume*
+8. Add a local localcent user and set `$HOME` to `/var/lib/localcent`
+9. Make `/var/lib/localcent` and `/etc/localcent` a docker *volume*
 10. Expose ports `8090` and `1776`
 11. Add default config from `docker/default_config.ini` and entry point script
 12. Run entry point script by default
@@ -25,19 +25,19 @@ The entry point simplifies the use of parameters for the `witness_node`
 
 ### Supported Environmental Variables
 
-* `$BITSHARESD_SEED_NODES`
-* `$BITSHARESD_RPC_ENDPOINT`
-* `$BITSHARESD_PLUGINS`
-* `$BITSHARESD_REPLAY`
-* `$BITSHARESD_RESYNC`
-* `$BITSHARESD_P2P_ENDPOINT`
-* `$BITSHARESD_WITNESS_ID`
-* `$BITSHARESD_PRIVATE_KEY`
-* `$BITSHARESD_TRACK_ACCOUNTS`
-* `$BITSHARESD_PARTIAL_OPERATIONS`
-* `$BITSHARESD_MAX_OPS_PER_ACCOUNT`
-* `$BITSHARESD_ES_NODE_URL`
-* `$BITSHARESD_TRUSTED_NODE`
+* `$LOCALCENTD_SEED_NODES`
+* `$LOCALCENTD_RPC_ENDPOINT`
+* `$LOCALCENTD_PLUGINS`
+* `$LOCALCENTD_REPLAY`
+* `$LOCALCENTD_RESYNC`
+* `$LOCALCENTD_P2P_ENDPOINT`
+* `$LOCALCENTD_WITNESS_ID`
+* `$LOCALCENTD_PRIVATE_KEY`
+* `$LOCALCENTD_TRACK_ACCOUNTS`
+* `$LOCALCENTD_PARTIAL_OPERATIONS`
+* `$LOCALCENTD_MAX_OPS_PER_ACCOUNT`
+* `$LOCALCENTD_ES_NODE_URL`
+* `$LOCALCENTD_TRUSTED_NODE`
 
 ### Default config
 
@@ -59,35 +59,35 @@ With docker compose, multiple nodes can be managed with a single
     services:
      main:
       # Image to run
-      image: bitshares/bitshares-core:latest
+      image: localcent/localcent-core:latest
       # 
       volumes:
-       - ./docker/conf/:/etc/bitshares/
+       - ./docker/conf/:/etc/localcent/
       # Optional parameters
       environment:
-       - BITSHARESD_ARGS=--help
+       - LOCALCENTD_ARGS=--help
 
 
     version: '3'
     services:
      fullnode:
       # Image to run
-      image: bitshares/bitshares-core:latest
+      image: localcent/localcent-core:latest
       environment:
       # Optional parameters
       environment:
-       - BITSHARESD_ARGS=--help
+       - LOCALCENTD_ARGS=--help
       ports:
        - "0.0.0.0:8090:8090"
       volumes:
-      - "bitshares-fullnode:/var/lib/bitshares"
+      - "localcent-fullnode:/var/lib/localcent"
 
 
 # Docker Hub
 
 This container is properly registered with docker hub under the name:
 
-* [bitshares/bitshares-core](https://hub.docker.com/r/bitshares/bitshares-core/)
+* [localcent/localcent-core](https://hub.docker.com/r/localcent/localcent-core/)
 
 Going forward, every release tag as well as all pushes to `develop` and
 `testnet` will be built into ready-to-run containers, there.
@@ -102,24 +102,24 @@ version: '3'
 services:
 
  fullnode:
-  image: bitshares/bitshares-core:latest
+  image: localcent/localcent-core:latest
   ports:
    - "0.0.0.0:8090:8090"
   volumes:
-  - "bitshares-fullnode:/var/lib/bitshares"
+  - "localcent-fullnode:/var/lib/localcent"
 
  delayed_node:
-  image: bitshares/bitshares-core:latest
+  image: localcent/localcent-core:latest
   environment:
-   - 'BITSHARESD_PLUGINS=delayed_node witness'
-   - 'BITSHARESD_TRUSTED_NODE=ws://fullnode:8090'
+   - 'LOCALCENTD_PLUGINS=delayed_node witness'
+   - 'LOCALCENTD_TRUSTED_NODE=ws://fullnode:8090'
   ports:
    - "0.0.0.0:8091:8090"
   volumes:
-  - "bitshares-delayed_node:/var/lib/bitshares"
+  - "localcent-delayed_node:/var/lib/localcent"
   links: 
   - fullnode
 
 volumes:
- bitshares-fullnode:
+ localcent-fullnode:
 ```

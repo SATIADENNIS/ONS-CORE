@@ -108,10 +108,10 @@ using std::endl;
 
 namespace detail {
 
-static const string ENC_HEADER( "-----BEGIN ONEST SIGNED MESSAGE-----\n" );
+static const string ENC_HEADER( "-----BEGIN LOCALCENT SIGNED MESSAGE-----\n" );
 static const string ENC_META(   "-----BEGIN META-----\n" );
 static const string ENC_SIG(    "-----BEGIN SIGNATURE-----\n" );
-static const string ENC_FOOTER( "-----END ONEST SIGNED MESSAGE-----" );
+static const string ENC_FOOTER( "-----END LOCALCENT SIGNED MESSAGE-----" );
 
 struct operation_result_printer
 {
